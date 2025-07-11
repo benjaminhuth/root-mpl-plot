@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def rebin_factor(bins_desired, bins_current):
     if bins_desired > bins_current:
         raise RuntimeError("Cannot increase number of bins")
@@ -67,7 +68,7 @@ class Hist1DWrapper:
         self.ylabel = th1.GetYaxis().GetTitle()
 
         def latexify(label):
-            label = label.replace("#","\\").replace(" ", "\\:")
+            label = label.replace("#", "\\").replace(" ", "\\:")
             return f"${label}$"
 
         self.xlabel = latexify(self.xlabel.replace("_", " "))
@@ -97,4 +98,3 @@ class Hist1DWrapper:
         ax.bar(self.x, height=self.y, yerr=(self.y_err_lo, self.y_err_hi), **bar_kwargs)
         self.common(ax)
         return ax
-
